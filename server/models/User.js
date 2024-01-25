@@ -19,12 +19,10 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    venues: [
-        {
+    venue: {
             type: Schema.Types.ObjectId,
             ref: 'Venue',
         },
-    ],
 });
 
 // set up pre-save middleware to create password

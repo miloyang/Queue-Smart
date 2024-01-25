@@ -8,7 +8,26 @@ const venueSchema = new Schema({
         maxlength: 280,
         trim: true,
     },
-})
+    queue: [
+        {
+            customerName: {
+                type: String,
+                required: true,
+                minlength: 1,
+                maxlength: 280,
+            },
+            customerMobile: {
+                type: String,
+                required: true,
+            },
+            createdAt: {
+                type: Date,
+                default: Date.now,
+                get: (timestamp) => dateFormat(timestamp),
+              },
+        },
+    ],
+});
 
 const Venue = model('Venue', venueSchema);
 

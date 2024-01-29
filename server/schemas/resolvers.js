@@ -45,6 +45,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    // add a venue
     addVenue: async (parent, { venueName }, context) => {
       if (context.user) {
         const venue = await Venue.create({
@@ -61,6 +62,7 @@ const resolvers = {
       throw AuthenticationError;
       ('You need to be logged in!');
     },
+    // add a queue
     addQueue: async (parent, { venueId, customerName, customerMobile }, context) => {
       if (context.user) {
         return Venue.findOneAndUpdate(
@@ -78,6 +80,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    // remove the venue
     removeVenue: async (parent, { venueId }, context) => {
       if (context.user) {
         const venue = await Venue.findOneAndDelete({
@@ -92,13 +95,14 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    // remove a queue
     removeQueue: async (parent, { venueId, customerName, customerMobile }, context) => {
       if (context.user) {
         return Venue.findOneAndUpdate(
           { _id: venueId },
           {
             $pull: {
-              queue: {
+              queues: {
                 _id: queueId,
                 customerName,
                 customerMobile

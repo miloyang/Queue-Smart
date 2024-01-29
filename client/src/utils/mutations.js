@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   #! Mutation for users to login
@@ -27,4 +27,42 @@ export const ADD_USER = gql`
   }
 `;
 
-// Add the extra mutation needed here
+export const ADD_VENUE = gql`
+  #! Mutation to add a venue
+  mutation addVenue($venueName: String!) {
+    addVenue(venueName: $venueName) {
+      _id
+      venueName
+      queues {
+        _id
+        customerName
+        customerMobile
+        createdAt
+      }
+    }
+  }
+`;
+
+export const ADD_QUEUE = gql`
+  #! Mutation to add queues into the venue
+  mutation addQueue(
+    $venueId: ID!
+    $customerName: String!
+    $customerMobile: String!
+  ) {
+    addQueue(
+      venueId: $venueId
+      customerName: $customerName
+      customerMobile: $customerMobile
+    ) {
+      _id
+      venueName
+      queues {
+        _id
+        customerName
+        customerMobile
+        createdAt
+      }
+    }
+  }
+`;

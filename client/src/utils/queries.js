@@ -1,18 +1,45 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-// queries for apollo client
-export const GET_ME = gql`
-  #! Conditionally render data specific to logged in users profile page
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      venue {
+        _id
+        venueName
+      }
+    }
+  }
+`;
+
+export const QUERY_VENUE = gql`
+  query getVenue($venueId: ID!) {
+    venue(venueId: $venueId) {
+      _id
+      venueName
+      queues {
+        _id
+        customerName
+        customerMobile
+        createdAt
+      }
+    }
+  }
+`;
+
+export const QUERY_ME = gql`
   query me {
     me {
       _id
       username
       email
       venue {
-        venueId
+        _id
         venueName
-        queue {
-          queueId
+        queues {
+          _id
           customerName
           customerMobile
           createdAt

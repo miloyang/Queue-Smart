@@ -10,7 +10,7 @@ const typeDefs = `
   type Venue {
     _id: ID
     venueName: String!
-    queue: [Queue]!
+    queues: [Queue]!
   }
 
   type Queue {

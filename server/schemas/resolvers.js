@@ -1,7 +1,6 @@
 //! Import dependencies
-const { User } = require('../models');
-const { signToken } = require('../utils/auth');
-const { AuthenticationError } = require('apollo-server-express');
+const { User, Venue } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
 
 // Create resolver object
 const resolvers = {
@@ -12,12 +11,13 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
           '-__v -password'
-        );
+          ).populate('venue');
         return userData;
       }
       throw new AuthenticationError('Not logged in');
     },
   },
+
 
   // Mutation resolvers
   Mutation: {
@@ -44,6 +44,71 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    addVenue: async (parent, { venueName }, context) => {
+      if (context.user) {
+        const venue = await Venue.create({
+          venueName
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { venue: venue._id } }
+        );
+
+        return venue;
+      }
+      throw AuthenticationError;
+      ('You need to be logged in!');
+    },
+    addQueue: async (parent, { venueId, customerName, customerMobile }, context) => {
+      if (context.user) {
+        return Venue.findOneAndUpdate(
+          { _id: venueId },
+          {
+            $addToSet: {
+              queue: { customerName, customerMobile },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw AuthenticationError;
+    },
+    removeVenue: async (parent, { venueId }, context) => {
+      if (context.user) {
+        const venue = await Venue.findOneAndDelete({
+          _id: venueId
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { venue: venue._id } }
+        );
+
+        return venue;
+      }
+      throw AuthenticationError;
+    },
+    removeQueue: async (parent, { venueId, customerName, customerMobile }, context) => {
+      if (context.user) {
+        return Venue.findOneAndUpdate(
+          { _id: venueId },
+          {
+            $pull: {
+              queue: {
+                _id: queueId,
+                customerName,
+                customerMobile
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
     },
   },
 };

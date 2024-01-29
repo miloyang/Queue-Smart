@@ -26,3 +26,5 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+// Add the extra mutation needed here

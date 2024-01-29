@@ -1,19 +1,16 @@
-// Import the gql tagged template function;
-const { gql } = require("apollo-server-express");
-
-const typeDefs = gql`
+const typeDefs = `
   type User {
     _id: ID!
     username: String!
     email: String!
     password: String!
-    venues: Venue
+    venue: Venue
   }
 
   type Venue {
     _id: ID
     venueName: String!
-    queues: [Queue]!
+    queue: [Queue]!
   }
 
   type Queue {
@@ -31,8 +28,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User!]!
-    user(username: String!): User
-    venue(id: ID!): Venue
+    me: User
   }
 
   type Mutation {
@@ -41,6 +37,11 @@ const typeDefs = gql`
     addVenue(venueName: String!): Venue!
     removeVenue(venueId: ID!): Venue
     addQueue(
+      customerName: String!
+      customerMobile: String!
+      venueId: ID!
+    ): Queue!
+    removeQueue(
       customerName: String!
       customerMobile: String!
       venueId: ID!

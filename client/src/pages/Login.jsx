@@ -53,9 +53,12 @@ const Login = (props) => {
   return (
     <Flex
       justifyContent="center"
+      mt={4}
+      mb={4}
       alignItems="center"
-      minH="100vh"
-      bg="gray.100"
+    //   minH="100vh"
+    //   width="100%"
+    //   bg="gray.100"
     >
       <Box
         borderWidth="1px"

@@ -1,13 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Auth  from '../../utils/auth';
-import {
-  Box,
-  Flex,
-  Link as ChakraLink,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import React from "react";
+import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
+import { Box, Flex, Link as ChakraLink, Button, Text } from "@chakra-ui/react";
 
 const Header = () => {
   const logout = (event) => {
@@ -27,19 +21,14 @@ const Header = () => {
       top={0}
       zIndex={1}
     >
-      <div
-        align="center"
-        justify="space-between"
-        maxWidth="1200px"
-        mx="auto"
-      >
+      <div align="center" justify="space-between" maxWidth="1200px" mx="auto">
         <div align="center">
           <ChakraLink as={Link} to="/" mr={4}>
-            <Text fontSize="2xl" fontWeight="bold">
-              Queue Smart
+            <Text fontSize="4xl" fontWeight="bold">
+              Queue-Smart
             </Text>
           </ChakraLink>
-          <Text fontSize="lg">
+          <Text fontSize="2xl" mt={-3} mb={2}>
             Give your customers the flexibility to skip physical queues.
           </Text>
         </div>
@@ -54,14 +43,14 @@ const Header = () => {
               </Button>
             </>
           ) : (
-            <>
-              <ChakraLink as={Link} to="/login" mr={4}>
+            <div>
+              <ChakraLink as={Link} to="/login" mr={4} fontSize="xl" color="skyblue">
                 Login
               </ChakraLink>
-              <ChakraLink as={Link} to="/signup">
+              <ChakraLink as={Link} to="/signup" fontSize="xl" color="lightgreen">
                 Signup
               </ChakraLink>
-            </>
+            </div>
           )}
         </div>
       </div>

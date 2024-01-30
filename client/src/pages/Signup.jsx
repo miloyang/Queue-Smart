@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
 import {
   Box,
   FormControl,
@@ -9,13 +9,13 @@ import {
   Button,
   Text,
   Link,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -44,7 +44,7 @@ const Signup = () => {
   };
 
   return (
-    <Box textAlign="center" mt={4}>
+    <Box justifyContent="center" alignItems="center" mt={4} mb={4}>
       <Box
         borderWidth="1px"
         borderRadius="lg"
@@ -58,7 +58,7 @@ const Signup = () => {
         </Text>
         {data ? (
           <Text mb={4}>
-            Success! You may now head{' '}
+            Success! You may now head{" "}
             <Link to="/" color="teal.500">
               back to the homepage.
             </Link>
@@ -98,12 +98,7 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </FormControl>
-            <Button
-              colorScheme="teal"
-              type="submit"
-              width="full"
-              mb={4}
-            >
+            <Button colorScheme="teal" type="submit" width="full" mb={4}>
               Submit
             </Button>
           </form>

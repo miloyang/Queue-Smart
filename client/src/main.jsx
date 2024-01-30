@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
+import AddVenue from './pages/AddVenue.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,16 +28,17 @@ const router = createBrowserRouter([
         element: <Signup />
       }, 
       {
-        path: '/profiles/:username',
+        path: '/profile/:username',
         element: <Profile />
       }, {
         path: '/me',
         element: <Profile />
       }, 
+      {
+        path: '/venue',
+        element: <AddVenue />
+      }, 
       // {
-      //   path: '/venue/',
-      //   element: <Venue />
-      // }, {
       //   path: '/venue/queues',
       //   element: <Queue />
       // }

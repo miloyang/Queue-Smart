@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+// import signup  from './Signup';
 import {
   Box,
   FormControl,
@@ -122,7 +123,7 @@ const Login = (props) => {
 
         <Text mb={4}>
           Don&apos;t have an account?{' '}
-          <ChakraLink to="/signup" color="teal.500">
+          <ChakraLink as={Link} to="/signup" color="teal.500">
             Sign up here
           </ChakraLink>
         </Text>

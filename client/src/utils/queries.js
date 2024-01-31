@@ -29,6 +29,21 @@ export const QUERY_VENUE = gql`
   }
 `;
 
+export const QUERY_QUEUES = gql`
+  query getQueues($venueId: ID!) {
+    venue(venueId: $venueId) {
+      _id
+      venueName
+      queues {
+        _id
+        customerName
+        customerMobile
+        createdAt
+      }
+    }
+  }
+`;
+
 export const QUERY_ME = gql`
   query me {
     me {

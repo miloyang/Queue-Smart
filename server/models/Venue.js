@@ -8,7 +8,7 @@ const venueSchema = new Schema({
         maxlength: 280,
         trim: true,
     },
-    queue: [
+    queues: [
         {
             customerName: {
                 type: String,

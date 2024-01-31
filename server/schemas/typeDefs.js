@@ -17,7 +17,7 @@ const typeDefs = `
     _id: ID!
     customerName: String!
     customerMobile: String!
-    createdAt: String!
+    createdAt: String
   }
 
   #! JWT
@@ -27,25 +27,19 @@ const typeDefs = `
   }
 
   type Query {
-    users: [User!]!
+    users: [User]
+    user(username: String!): User
+    venue(username: String): [Venue]
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addVenue(venueName: String!): Venue!
+    addVenue(venueName: String!): Venue
+    addQueue(venueId: ID!, customerName: String!, customerMobile: String!): Venue
     removeVenue(venueId: ID!): Venue
-    addQueue(
-      customerName: String!
-      customerMobile: String!
-      venueId: ID!
-    ): Queue!
-    removeQueue(
-      customerName: String!
-      customerMobile: String!
-      venueId: ID!
-    ): Queue!
+    removeQueue(venueId: ID!, queueId: ID!): Venue
   }
 `;
 

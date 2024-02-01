@@ -46,7 +46,7 @@ const Profile = () => {
         <div className="flex-row justify-center mb-3">
           {/* Other profile page content */}
           <Link to="/add-venue">
-            <Button colorScheme="teal">Create Venue</Button>
+            <Button colorScheme="teal">Add Venue</Button>
           </Link>
         </div>
         {/* {<Button onClick={() => setShowAddVenue(true)}>Add Venue</Button>} */}

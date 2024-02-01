@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_VENUE } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 import {
     Box,
     FormControl,
@@ -12,6 +13,7 @@ import {
 
 const AddVenue = () => {
 //   const [venueName, setVenueName] = useState("");
+const navigate = useNavigate(); // Initialize useHistory
   const [formState, setFormState] = useState({
     venueName: "",
   });
@@ -26,58 +28,37 @@ const AddVenue = () => {
     });
   };
 
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+  //   console.log(formState);
+
+  //   try {
+  //       const { data } = await addVenue({
+  //           variables: { ...formState },
+  //       });
+
+  //       Auth.login(data.addVenue.token);
+  //   } catch (e) {
+  //       console.error(e);
+  //   }
+  // };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
-        const { data } = await addVenue({
-            variables: { ...formState },
-        });
+      // Execute the ADD_VENUE mutation
+      await addVenue({ variables: { venueName: formState.venueName } });
+      navigate("/me"); // Redirect to the profile page after submission
 
-        Auth.login(data.addVenue.token);
-    } catch (e) {
-        console.error(e);
+      // Clear the input field after successful submission
+      // setVenueName("");
+    } catch (err) {
+      console.error(err);
     }
   };
 
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-
-//     try {
-//       // Execute the ADD_VENUE mutation
-//       const { data } = await addVenue({
-//         variables: { venueName },
-//       });
-
-//       console.log(data); 
-
-//       // Clear the input field after successful submission
-//       setVenueName("");
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-
   return (
-    // <div>
-    //   <h2>Add Venue</h2>
-    //   {error && <div>Error: {error.message}</div>}
-    //   <form onSubmit={handleFormSubmit}>
-    //     <div>
-    //       <label htmlFor="venueName">Venue Name:</label>
-    //       <input
-    //         type="text"
-    //         id="venueName"
-    //         value={venueName}
-    //         onChange={(e) => setVenueName(e.target.value)}
-    //         required
-    //       />
-    //     </div>
-    //     <button type="submit">Submit</button>
-    //   </form>
-    // </div>
-    
     <Box justifyContent="center" alignItems="center" mt={4} mb={4}>
       <Box
         borderWidth="1px"

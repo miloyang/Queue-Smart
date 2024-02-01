@@ -1,15 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from './App.jsx'
-import './index.css'
-import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import ErrorPage from './pages/ErrorPage';
-import AddVenue from './pages/AddVenue.jsx';
+import App from "./App.jsx";
+import "./index.css";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import ErrorPage from "./pages/ErrorPage";
+import AddVenue from "./pages/AddVenue.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,33 +19,36 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
-      }, {
-        path: '/login',
-        element: <Login />
-      }, {
-        path: '/signup',
-        element: <Signup />
-      }, 
+        element: <Home />,
+      },
       {
-        path: '/profile/:username',
-        element: <Profile />
-      }, {
-        path: '/me',
-        element: <Profile />
-      }, 
+        path: "/login",
+        element: <Login />,
+      },
       {
-        path: '/venue',
-        element: <AddVenue />
-      }, 
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/profile/:username",
+        element: <Profile />,
+      },
+      {
+        path: "/me",
+        element: <Profile />,
+      },
+      {
+        path: "/add-venue",
+        element: <AddVenue />,
+      },
       // {
       //   path: '/venue/queues',
       //   element: <Queue />
       // }
-    ]
+    ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
-)
+);

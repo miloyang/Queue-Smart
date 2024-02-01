@@ -99,7 +99,7 @@ const Signup = () => {
               />
             </FormControl>
             <Button colorScheme="teal" type="submit" width="full" mb={4}>
-              Submit
+              Sign Up
             </Button>
           </form>
         )}

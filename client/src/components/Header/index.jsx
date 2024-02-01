@@ -9,6 +9,7 @@ const Header = () => {
     Auth.logout();
   };
 
+  // console.log(Auth.getProfile());
   return (
     <div
       bg="primary.500"
@@ -44,10 +45,21 @@ const Header = () => {
             </>
           ) : (
             <div>
-              <ChakraLink as={Link} to="/login" mr={4} fontSize="xl" color="skyblue">
+              <ChakraLink
+                as={Link}
+                to="/login"
+                mr={4}
+                fontSize="xl"
+                color="skyblue"
+              >
                 Login
               </ChakraLink>
-              <ChakraLink as={Link} to="/signup" fontSize="xl" color="lightgreen">
+              <ChakraLink
+                as={Link}
+                to="/signup"
+                fontSize="xl"
+                color="lightgreen"
+              >
                 Signup
               </ChakraLink>
             </div>

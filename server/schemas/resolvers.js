@@ -92,7 +92,7 @@ const resolvers = {
           { _id: venueId },
           {
             $addToSet: {
-              queue: { customerName, customerMobile },
+              queues: { customerName, customerMobile },
             },
           },
           {

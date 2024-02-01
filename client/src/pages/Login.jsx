@@ -110,7 +110,7 @@ const Login = (props) => {
               width="full"
               mb={4}
             >
-              Submit
+              Login
             </Button>
           </form>
         )}

@@ -26,14 +26,14 @@ const Profile = () => {
     return <div>Loading...</div>;
   }
 
-  if (!user?.username) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    );
-  }
+  // if (!user?.username) {
+  //   return (
+  //     <h4>
+  //       You need to be logged in to see this. Use the navigation links above to
+  //       sign up or log in!
+  //     </h4>
+  //   );
+  // }
 
   return (
     <div>
@@ -46,9 +46,17 @@ const Profile = () => {
         <div className="flex-row justify-center mb-3">
           {/* Other profile page content */}
           <Link to="/add-venue">
-            <Button colorScheme="teal">Add Venue</Button>
+            <Button size="lg" colorScheme="teal">Add Venue</Button>
           </Link>
         </div>
+        {console.log(user.venue)}
+        {/* Display the venue if the user has added one */}
+        {user.venue && (
+          <div>
+            <h2>Venue:</h2>
+            <p>{user.venue}</p>
+          </div>
+        )}
         {/* {<Button onClick={() => setShowAddVenue(true)}>Add Venue</Button>} */}
         {/* <AddVenue /> */}
         {/* <VenueForm /> */}

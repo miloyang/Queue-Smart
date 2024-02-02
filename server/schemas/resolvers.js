@@ -84,7 +84,7 @@ const resolvers = {
     // add a queue
     addQueue: async (
       parent,
-      { venueId, customerName, customerMobile },
+      { venueId, customerName, customerMobile, partySize },
       context
     ) => {
       if (context.user) {
@@ -92,7 +92,7 @@ const resolvers = {
           { _id: venueId },
           {
             $addToSet: {
-              queues: { customerName, customerMobile },
+              queues: { customerName, customerMobile, partySize },
             },
           },
           {
@@ -121,7 +121,7 @@ const resolvers = {
     // remove a queue
     removeQueue: async (
       parent,
-      { venueId, customerName, customerMobile },
+      { venueId, customerName, customerMobile, partySize },
       context
     ) => {
       if (context.user) {
@@ -133,6 +133,7 @@ const resolvers = {
                 _id: queueId,
                 customerName,
                 customerMobile,
+                partySize
               },
             },
           },

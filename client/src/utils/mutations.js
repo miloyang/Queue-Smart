@@ -36,6 +36,7 @@ export const ADD_VENUE = gql`
         _id
         customerName
         customerMobile
+        partySize
         createdAt
       }
     }
@@ -48,6 +49,7 @@ export const ADD_QUEUE = gql`
     $venueId: ID!
     $customerName: String!
     $customerMobile: String!
+    $partySize: Int!
   ) {
     addQueue(
       venueId: $venueId
@@ -60,6 +62,7 @@ export const ADD_QUEUE = gql`
         _id
         customerName
         customerMobile
+        partySize
         createdAt
       }
     }

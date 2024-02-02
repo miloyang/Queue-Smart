@@ -35,14 +35,14 @@ const Header = () => {
         </div>
         <div align="center">
           {Auth.loggedIn() ? (
-            <>
+            <Box mb={4}>
               <ChakraLink as={Link} to="/me" mr={4}>
                 {Auth.getProfile().data.username}'s profile
               </ChakraLink>
               <Button onClick={logout} variant="outline" colorScheme="white">
                 Logout
               </Button>
-            </>
+            </Box>
           ) : (
             <div>
               <ChakraLink
@@ -58,7 +58,7 @@ const Header = () => {
                 as={Link}
                 to="/signup"
                 fontSize="xl"
-                color="lightgreen"
+                color="pink"
               >
                 Signup
               </ChakraLink>

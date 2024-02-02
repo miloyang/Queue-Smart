@@ -23,6 +23,7 @@ export const QUERY_VENUE = gql`
         _id
         customerName
         customerMobile
+        partySize
         createdAt
       }
     }
@@ -38,6 +39,7 @@ export const QUERY_QUEUES = gql`
         _id
         customerName
         customerMobile
+        partySize
         createdAt
       }
     }
@@ -57,6 +59,7 @@ export const QUERY_ME = gql`
           _id
           customerName
           customerMobile
+          partySize
           createdAt
         }
       }

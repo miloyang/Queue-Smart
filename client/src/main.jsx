@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import ErrorPage from "./pages/ErrorPage";
 import AddVenue from "./pages/AddVenue.jsx";
+import JoinQueueSuccess from "./pages/JoinQueueSuccess.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/add-venue",
         element: <AddVenue />,
+      },
+      {
+        path: "/join-queue-success",
+        element: <JoinQueueSuccess />,
       },
       // {
       //   path: '/venue/queues',

@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import QRCodeScanner from 'qrcode-scanner';
+import React, { useState } from 'react';
+import QrReader from 'react-qr-reader';
+import { useNavigate } from 'react-router-dom';
 
 const QRScanner = () => {
-  const history = useHistory();
-  const [scanner, setScanner] = useState(null);
+  const navigate = useNavigate();
+  const [scanResult, setScanResult] = useState(null);
 
-  useEffect(() => {
-    const scanner = new QRCodeScanner(
-      (error, result) => {
-        if (result) {
-          history.push(`/queue?venue=${result.text}`);
-        }
-      },
-      '#scan-canvas'
-    );
+  const handleScan = (data) => {
+    if (data) {
+      setScanResult(data);
+      navigate('/join-queue');
+    }
+  };
 
-    setScanner(scanner);
+  const handleError = (err) => {
+    console.error(err);
+  };
 
-    return () => {
-      scanner.destroy();
-    };
-  }, [history]);
-
-  return <div id="scan-canvas" />;
+  return (
+    <div>
+      <h2>Scan QR Code</h2>
+      <QrReader
+        delay={300}
+        onError={handleError}
+        onScan={handleScan}
+        style={{ width: '100%' }}
+      />
+      {scanResult && <p>Scanned QR code: {scanResult}</p>}
+    </div>
+  );
 };
 
 export default QRScanner;

@@ -50,7 +50,12 @@ const navigate = useNavigate(); // Initialize useHistory
       // Execute the ADD_VENUE mutation
       await addVenue({ variables: { venueName: formState.venueName } });
       navigate("/me"); // Redirect to the profile page after submission
-
+      // {user.venue && (
+      //   <div>
+      //     <h2>Venue:</h2>
+      //     <p>{user.venue}</p>
+      //   </div>
+      // )}
       // Clear the input field after successful submission
       // setVenueName("");
     } catch (err) {

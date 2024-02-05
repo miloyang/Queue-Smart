@@ -54,21 +54,41 @@ const resolvers = {
     },
     // add a venue
     addVenue: async (parent, { venueName }, context) => {
-      if (context.user) {
-        const venue = await Venue.create({
-          venueName,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { venue: venue._id } }
-        );
-
-        return venue;
+      // Check if the user is authenticated
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in to add a venue');
       }
-      throw AuthenticationError;
-      ("You need to be logged in!");
+
+      // Check if the user already has a venue associated with their account
+      const user = await User.findById(context.user._id).populate('venue');
+      if (user.venue) {
+        throw new Error('You already have a venue associated with your account');
+      }
+
+      // Create the new venue
+      const venue = await Venue.create({ venueName });
+
+      // Update the user's venue field with the newly created venue
+      await User.findByIdAndUpdate(context.user._id, { venue: venue._id });
+
+      return venue;
     },
+    // addVenue: async (parent, { venueName }, context) => {
+    //   if (context.user) {
+    //     const venue = await Venue.create({
+    //       venueName,
+    //     });
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { venue: venue._id } }
+    //     );
+
+    //     return venue;
+    //   }
+    //   throw AuthenticationError;
+    //   ("You need to be logged in!");
+    // },
     // add a queue
     addQueue: async (
       parent,

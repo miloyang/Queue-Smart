@@ -30,20 +30,32 @@ export const QUERY_VENUE = gql`
   }
 `;
 
+// export const QUERY_QUEUES = gql`
+//   query getQueues($venueId: ID!) {
+//     venue(venueId: $venueId) {
+//       _id
+//       venueName
+//       queues {
+//         _id
+//         customerName
+//         customerMobile
+//         partySize
+//         createdAt
+//       }
+//     }
+//   }
+// `;
+
 export const QUERY_QUEUES = gql`
-  query getQueues($venueId: ID!) {
-    venue(venueId: $venueId) {
-      _id
-      venueName
-      queues {
-        _id
-        customerName
-        customerMobile
-        partySize
-        createdAt
-      }
+query Queues {
+  venue {
+    queues {
+      customerMobile
+      customerName
+      partySize
     }
   }
+}
 `;
 
 export const QUERY_ME = gql`

@@ -14,7 +14,7 @@ const DonationButton = () => {
       onClick={handleDonateClick}
       style={{ margin: "15px" }}
     >
-      Support Us
+      Donate Now
     </Button>
   );
 };

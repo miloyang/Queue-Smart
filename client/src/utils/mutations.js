@@ -45,7 +45,7 @@ export const ADD_VENUE = gql`
 
 export const ADD_QUEUE = gql`
   #! Mutation to add queues into the venue
-  mutation addQueue(
+  mutation AddQueue(
     $venueId: ID!
     $customerName: String!
     $customerMobile: String!
@@ -55,29 +55,30 @@ export const ADD_QUEUE = gql`
       venueId: $venueId
       customerName: $customerName
       customerMobile: $customerMobile
+      partySize: $partySize
     ) {
       _id
-      venueName
       queues {
         _id
-        customerName
-        customerMobile
-        partySize
         createdAt
+        customerMobile
+        customerName
+        partySize
       }
+      venueName
     }
   }
 `;
 
 export const REMOVE_QUEUE = gql`
-mutation RemoveQueue($venueId: ID!, $queueId: ID!) {
-  removeQueue(venueId: $venueId, queueId: $queueId) {
-    _id
-    venueName
-    queues {
+  mutation RemoveQueue($venueId: ID!, $queueId: ID!) {
+    removeQueue(venueId: $venueId, queueId: $queueId) {
       _id
-      customerName
+      venueName
+      queues {
+        _id
+        customerName
+      }
     }
   }
-}
 `;

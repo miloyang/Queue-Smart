@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer
       className="w-100 mt-auto bg-secondary p-4"
-      style={{ marginTop: "15px" }}
+      style={{ marginTop: "65px" }}
     >
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (

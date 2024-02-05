@@ -58,6 +58,10 @@ const router = createBrowserRouter([
         path: '/venue/:venueId/join-queue',
         element: <JoinQueueForm />
       },
+      // {
+      //   path: `venue/${userParam}/join-queue`,
+      //   element: <JoinQueueForm />
+      // },
       {
         path: '/venue/:venueId/live-queue',
         element: <LiveQueue />

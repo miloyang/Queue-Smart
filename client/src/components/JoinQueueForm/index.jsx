@@ -1,33 +1,36 @@
 import React, { useState } from "react";
-// import { useParams } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
+import { useMutation } from '@apollo/client';
+import { ADD_QUEUE } from '../../utils/mutations';
 
-// const JoinQueueForm = ({ addNewEntryToQueue }) => {
-  const JoinQueueForm = () => {
+const JoinQueueForm = () => {
   const navigate = useNavigate();
+  const { venueId: userParam } = useParams(); // Get venueId from URL params
+  const [addQueueMutation] = useMutation(ADD_QUEUE);
+
   const [customerName, setCustomerName] = useState("");
   const [customerMobile, setCustomerMobile] = useState("");
   const [partySize, setPartySize] = useState(1);
-  // const { venueId: userParam } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a new entry object with the form data
-    // const newEntry = {
-    //   customerName,
-    //   customerMobile,
-    //   partySize,
-    // };
-    // // Pass the new entry to the parent component to add it to the queue
-    // addNewEntryToQueue(newEntry);
-    // // Reset the form fields after submission
-    // setCustomerName("");
-    // setCustomerMobile("");
-    // setPartySize("");
-
-    navigate("/join-queue-success");
+    try {
+      const { data } = await addQueueMutation({
+        variables: {
+          venueId: userParam, // Pass the venueId from URL params
+          customerName,
+          customerMobile,
+          partySize, 
+          createdAt
+        }
+      });
+      console.log('New queue entry added:', data.addQueue);
+      navigate("/join-queue-success"); // Navigate after successful submission
+    } catch (error) {
+      console.error('Error adding queue entry:', error);
+    }
   };
 
   return (

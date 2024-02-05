@@ -21,6 +21,7 @@ const Queue = () => {
     //   console.error('Error generating QR code:', error);
     // }
   };
+  //   const baseUrl = process.env.NODE_ENV === 'production' ? 'https://example.com' : 'http://localhost:3000';
 
   return (
     <div>
@@ -30,20 +31,27 @@ const Queue = () => {
       </Button>
       {/* Display QR code if generated */}
       {/* {showQRCode && <QRCode value={`Venue ID: ${userParam}`} />} */}
+      {/* {showQRCode && (
+        <QRCode value={`${baseUrl}/venue/${userParam}/join-queue`} />
+      )} */}
       {showQRCode && (
         <QRCode value={`http://localhost:3000/venue/${userParam}/join-queue`} />
       )}
       {/* {showQRCode && <QRCode value={`venue/${userParam}/join-queue`} />} */}
+
       <br></br>
       <br></br>
+
       <Link to="/venue/${userParam}/live-queue">
         <Button colorScheme="teal">Live Queue</Button>
       </Link>
+
       <br></br>
       {/* Make shift button to test out join queue form */}
       <Link to="/venue/:venueId/join-queue">
         <Button colorScheme="teal">Join Queue</Button>
       </Link>
+      {/* <Link to={`/venue/${user.venue._id}`}></Link> */}
       {/* Make shift button to test out join queue success page */}
       <Link to="/join-queue-success">
         <Button colorScheme="teal">Join Queue Success</Button>

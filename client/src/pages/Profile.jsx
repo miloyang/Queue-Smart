@@ -50,7 +50,7 @@ const Profile = () => {
         {user.venue && (
           <div>
             <h2>Venue:</h2>
-            <Link to={`/venues/${user.venue._id}`}>
+            <Link to={`/venue/${user.venue._id}`}>
               <p>{user.venue.venueName}</p>
             </Link>
           </div>

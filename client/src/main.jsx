@@ -11,6 +11,9 @@ import Profile from "./pages/Profile";
 import ErrorPage from "./pages/ErrorPage";
 import AddVenue from "./pages/AddVenue.jsx";
 import JoinQueueSuccess from "./pages/JoinQueueSuccess.jsx";
+import Queue from "./pages/Queue";
+import JoinQueueForm from "./components/JoinQueueForm";
+import LiveQueue from "./components/LiveQueue";
 
 const router = createBrowserRouter([
   {
@@ -46,10 +49,18 @@ const router = createBrowserRouter([
         path: "/join-queue-success",
         element: <JoinQueueSuccess />,
       },
-      // {
-      //   path: '/venue/queues',
-      //   element: <Queue />
-      // }
+      {
+        path: '/venue/:venueId',
+        element: <Queue />
+      },
+      {
+        path: '/venue/:venueId/join-queue',
+        element: <JoinQueueForm />
+      },
+      {
+        path: '/venue/:venueId/live-queue',
+        element: <LiveQueue />
+      }
     ],
   },
 ]);

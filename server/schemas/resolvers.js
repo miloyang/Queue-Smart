@@ -2,6 +2,9 @@
 const { User, Venue } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require('apollo-server-express');
+// const twilio = require('twilio');
+
+// const client = twilio('AC3497b739e0ca22465aa311e970cdedb5', 'b2e2358cb730f7ed4de68c0b0d4c114b');
 
 // Create resolver object
 const resolvers = {
@@ -111,6 +114,25 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    // Sending text via Twilio
+    // SEND_TEXT: async (_, { customerId }) => {
+    //   try {
+    //     // Retrieve the customer information from your database based on the customerId
+    //     const customer = await Venue.queues.findById(queueId);
+
+    //     // Send the text message using Twilio
+    //     await client.messages.create({
+    //       body: 'Your table is ready! Please proceed to the restaurant.',
+    //       to: customer.customerMobile,
+    //       from: '+18159989676'
+    //     });
+
+    //     return true; // Return true to indicate that the message was sent successfully
+    //   } catch (error) {
+    //     console.error('Error sending text message:', error);
+    //     throw new AuthenticationError('Failed to send text message');
+    //   }
+    // },
     // remove the venue
     removeVenue: async (parent, { venueId }, context) => {
       if (context.user) {

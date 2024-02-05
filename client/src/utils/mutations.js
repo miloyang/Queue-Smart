@@ -68,3 +68,16 @@ export const ADD_QUEUE = gql`
     }
   }
 `;
+
+export const REMOVE_QUEUE = gql`
+mutation RemoveQueue($venueId: ID!, $queueId: ID!) {
+  removeQueue(venueId: $venueId, queueId: $queueId) {
+    _id
+    venueName
+    queues {
+      _id
+      customerName
+    }
+  }
+}
+`;

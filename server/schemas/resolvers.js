@@ -4,7 +4,7 @@ const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require('apollo-server-express');
 // const twilio = require('twilio');
 
-// const client = twilio('AC3497b739e0ca22465aa311e970cdedb5', 'b2e2358cb730f7ed4de68c0b0d4c114b');
+// const client = twilio('', '');
 
 // Create resolver object
 const resolvers = {
@@ -118,7 +118,7 @@ const resolvers = {
     // SEND_TEXT: async (_, { customerId }) => {
     //   try {
     //     // Retrieve the customer information from your database based on the customerId
-    //     const customer = await Venue.queues.findById(queueId);
+    //     const customer = await Venue.queues.findById(customerId);
 
     //     // Send the text message using Twilio
     //     await client.messages.create({

@@ -151,7 +151,7 @@ const resolvers = {
     // remove a queue
     removeQueue: async (
       parent,
-      { venueId, customerName, customerMobile, partySize },
+      { venueId, queueId },
       context
     ) => {
       if (context.user) {
@@ -160,10 +160,7 @@ const resolvers = {
           {
             $pull: {
               queues: {
-                _id: queueId,
-                customerName,
-                customerMobile,
-                partySize
+                _id: queueId
               },
             },
           },

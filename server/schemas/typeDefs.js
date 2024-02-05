@@ -17,7 +17,7 @@ const typeDefs = `
     _id: ID!
     customerName: String!
     customerMobile: String!
-    partySize: Int!
+    partySize: String!
     createdAt: String
   }
 
@@ -38,7 +38,7 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addVenue(venueName: String!): Venue
-    addQueue(venueId: ID!, customerName: String!, customerMobile: String!, partySize: Int!): Venue
+    addQueue(venueId: ID!, customerName: String!, customerMobile: String!, partySize: String!): Venue
     removeVenue(venueId: ID!): Venue
     removeQueue(venueId: ID!, queueId: ID!): Venue
   }

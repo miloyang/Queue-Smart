@@ -49,7 +49,7 @@ export const ADD_QUEUE = gql`
     $venueId: ID!
     $customerName: String!
     $customerMobile: String!
-    $partySize: Int!
+    $partySize: String!
   ) {
     addQueue(
       venueId: $venueId

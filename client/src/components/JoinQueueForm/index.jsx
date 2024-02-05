@@ -19,11 +19,10 @@ const JoinQueueForm = () => {
     try {
       const { data } = await addQueueMutation({
         variables: {
-          venueId: userParam, // Pass the venueId from URL params
+          venueId: JSON.parse(localStorage.getItem('venueId')), // Pass the venueId from URL params
           customerName,
           customerMobile,
-          partySize, 
-          createdAt
+          partySize
         }
       });
       console.log('New queue entry added:', data.addQueue);

@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { Box, Heading, Text, Button, Spinner } from "@chakra-ui/react";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+import { useMutation } from "@apollo/client";
+import { REMOVE_QUEUE } from '../../utils/mutations';
 
 const LiveQueue = () => {
   const [queuedEntries, setQueuedEntries] = useState([]);
+  const { loading, data, refetch } = useQuery(QUERY_ME);
+  const user = data?.me.venue.queues || data?.user || {};
+  console.log(user);
+
+  const [removeQueue, { error }] = useMutation(REMOVE_QUEUE);
 
   // Function to send a text message to the customer
   const sendTextMessage = (customerMobile) => {
@@ -11,10 +20,19 @@ const LiveQueue = () => {
   };
 
   // Function to remove the customer from the queue
-  const removeCustomerFromQueue = (index) => {
-    const updatedQueue = [...queuedEntries];
-    updatedQueue.splice(index, 1);
-    setQueuedEntries(updatedQueue);
+  const removeCustomerFromQueue = async (index) => {
+let queueId = index;
+    try {
+      const { data } = await removeQueue({
+        variables: { venueId:JSON.parse(localStorage.getItem('venueId')), queueId }
+      });
+
+    } catch (e) {
+      console.error(e);
+    }
+    // const updatedQueue = [...queuedEntries];
+    // updatedQueue.splice(index, 1);
+    // setQueuedEntries(updatedQueue);
   };
 
   return (
@@ -22,10 +40,10 @@ const LiveQueue = () => {
       <Heading as="h2" size="lg" mb="4">
         Live Queue
       </Heading>
-      {queuedEntries.length === 0 ? (
+      {user.length === 0 ? (
         <Text>No entries in the queue yet.</Text>
       ) : (
-        queuedEntries.map((entry, index) => (
+        user.map((entry, index) => (
           <Box key={index} borderWidth="1px" borderRadius="lg" p="4" mb="4">
             <Text fontSize="lg">Name: {entry.customerName}</Text>
             <Text fontSize="lg">Mobile: {entry.customerMobile}</Text>
@@ -41,7 +59,7 @@ const LiveQueue = () => {
             <Button
               colorScheme="red"
               size="sm"
-              onClick={() => removeCustomerFromQueue(index)}
+              onClick={() => removeCustomerFromQueue(entry._id)}
             >
               Remove from Queue
             </Button>

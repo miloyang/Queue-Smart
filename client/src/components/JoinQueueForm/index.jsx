@@ -1,53 +1,75 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+// import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { Button, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 
-const JoinQueueForm = () => {
+// const JoinQueueForm = ({ addNewEntryToQueue }) => {
+  const JoinQueueForm = () => {
   const navigate = useNavigate();
-  const [customerName, setCustomerName] = useState('');
-  const [customerMobile, setCustomerMobile] = useState('');
+  const [customerName, setCustomerName] = useState("");
+  const [customerMobile, setCustomerMobile] = useState("");
   const [partySize, setPartySize] = useState(1);
+  // const { venueId: userParam } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Call the API to add the customer to the queue
-    try {
-      // Assume an API call to add the customer to the queue
-      const response = await fetch('your-api-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: customerName,
-          mobile: customerMobile,
-          partySize: parseInt(partySize),
-        }),
-      });
 
-      if (response.ok) {
-        // If the API call is successful, navigate to the queue display page
-        navigate('/join-queue-success');
-      } else {
-        throw new Error('Failed to join the queue');
-      }
-    } catch (error) {
-      console.error('Error joining queue:', error);
-      // Handle error, show an alert, or set an error state
-    }
+    // Create a new entry object with the form data
+    // const newEntry = {
+    //   customerName,
+    //   customerMobile,
+    //   partySize,
+    // };
+    // // Pass the new entry to the parent component to add it to the queue
+    // addNewEntryToQueue(newEntry);
+    // // Reset the form fields after submission
+    // setCustomerName("");
+    // setCustomerMobile("");
+    // setPartySize("");
+
+    navigate("/join-queue-success");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="customerName">Your Name:</label>
-      <input type="text" id="customerName" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
+      <Stack spacing={4}>
+        <FormControl>
+          <FormLabel htmlFor="customerName">Your Name:</FormLabel>
+          <Input
+            type="text"
+            id="customerName"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            required
+          />
+        </FormControl>
 
-      <label htmlFor="customerMobile">Your Mobile:</label>
-      <input type="tel" id="customerMobile" value={customerMobile} onChange={(e) => setCustomerMobile(e.target.value)} />
+        <FormControl>
+          <FormLabel htmlFor="customerMobile">Your Mobile:</FormLabel>
+          <Input
+            type="tel"
+            id="customerMobile"
+            value={customerMobile}
+            onChange={(e) => setCustomerMobile(e.target.value)}
+            required
+          />
+        </FormControl>
 
-      <label htmlFor="partySize">Party Size:</label>
-      <input type="number" id="partySize" value={partySize} onChange={(e) => setPartySize(e.target.value)} />
+        <FormControl>
+          <FormLabel htmlFor="partySize">Party Size:</FormLabel>
+          <Input
+            type="number"
+            id="partySize"
+            value={partySize}
+            onChange={(e) => setPartySize(e.target.value)}
+            required
+          />
+        </FormControl>
 
-      <button type="submit">Join Queue</button>
+        <Button type="submit" colorScheme="teal">
+          Join Queue
+        </Button>
+      </Stack>
     </form>
   );
 };

@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import { Box, Flex, Link as ChakraLink, Button, Text } from "@chakra-ui/react";
 
 const Header = () => {
+  const navigate = useNavigate();
+  
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+    navigate("/");
   };
 
   // console.log(Auth.getProfile());
@@ -54,12 +57,7 @@ const Header = () => {
               >
                 Login
               </ChakraLink>
-              <ChakraLink
-                as={Link}
-                to="/signup"
-                fontSize="xl"
-                color="pink"
-              >
+              <ChakraLink as={Link} to="/signup" fontSize="xl" color="pink">
                 Signup
               </ChakraLink>
             </div>

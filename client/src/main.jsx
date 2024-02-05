@@ -14,6 +14,7 @@ import JoinQueueSuccess from "./pages/JoinQueueSuccess.jsx";
 import Queue from "./pages/Queue";
 import JoinQueueForm from "./components/JoinQueueForm";
 import LiveQueue from "./components/LiveQueue";
+// import Donation from "./components/Donation";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +61,11 @@ const router = createBrowserRouter([
       {
         path: '/venue/:venueId/live-queue',
         element: <LiveQueue />
-      }
+      },
+      // {
+      //   path: '/donate',
+      //   element: <Donation />
+      // }
     ],
   },
 ]);

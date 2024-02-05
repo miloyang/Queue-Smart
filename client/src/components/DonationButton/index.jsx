@@ -3,8 +3,8 @@ import { Button } from "@chakra-ui/react";
 
 const DonationButton = () => {
   const handleDonateClick = () => {
-    // Handle click event, such as opening a donation page
-    window.location.href = "/donate"; // Redirect to the donation page
+    // Handle click event to open the donation page 
+    window.open("https://donate.stripe.com/test_7sI01o9c7aGj5YkeUU", "_blank"); // Redirect to the donation page
   };
 
   return (
@@ -14,7 +14,7 @@ const DonationButton = () => {
       onClick={handleDonateClick}
       style={{ margin: "15px" }}
     >
-      Donate Now
+      Support Us
     </Button>
   );
 };

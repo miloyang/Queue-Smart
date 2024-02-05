@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 
-import { Button } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 // import { Venue } from "../../../server/models";
 
@@ -47,11 +47,29 @@ const Profile = () => {
         </div>
 
         {/* Display the added venue as a clickable link if the user has added one */}
-        {user.venue && (
+        {/* {user.venue && (
           <div>
             <h2>Venue:</h2>
             <Link to={`/venue/${user.venue._id}`}>
               <p>{user.venue.venueName}</p>
+            </Link>
+          </div>
+        )} */}
+
+        {user.venue && (
+          <div style={{ marginTop: "1rem" }}>
+            <Text fontSize="3xl" fontWeight="bold">
+              Venue:
+            </Text>
+            <Link to={`/venue/${user.venue._id}`}>
+              <Text
+                color="teal.500"
+                fontSize="xl"
+                fontWeight="bold"
+                textDecoration="underline"
+              >
+                {user.venue.venueName}
+              </Text>
             </Link>
           </div>
         )}

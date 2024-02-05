@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import DonationButton from "../DonationButton/index";
+import { Button } from "@chakra-ui/react";
 
 const Footer = () => {
   const location = useLocation();
@@ -11,9 +12,9 @@ const Footer = () => {
     >
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (
-          <button className="btn btn-dark mb-3" onClick={() => navigate(-1)}>
+          <Button className="btn btn-dark mb-3" variant="outline" colorScheme="white" onClick={() => navigate(-1)}>
             &larr; Go Back
-          </button>
+          </Button>
         )}
         <h4 style={{ marginTop: "15px" }}>
           This is a free service but we appreciate any support to help us

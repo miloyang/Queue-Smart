@@ -28,8 +28,11 @@ const Profile = () => {
 
   const handleRemoveVenue = async () => {
     try {
-      await removeVenue();
-      // Optionally, perform any UI updates after successful deletion
+      await removeVenue({
+        variables: {
+          venueId: user.venue._id,
+        },
+      });
     } catch (error) {
       console.error("Error removing venue:", error);
     }

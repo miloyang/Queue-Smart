@@ -13,7 +13,11 @@ const Queue = () => {
     localStorage.setItem("venueId", JSON.stringify(userParam));
     setShowQRCode(true);
   };
-  //   const baseUrl = process.env.NODE_ENV === 'production' ? 'https://example.com' : 'http://localhost:3000';
+
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://queue-smart.onrender.com"
+      : "http://localhost:3000";
 
   return (
     <div>
@@ -23,12 +27,13 @@ const Queue = () => {
       </Button>
 
       {/* Display QR code if generated */}
-      {/* {showQRCode && (
-        <QRCode value={`${baseUrl}/venue/${userParam}/join-queue`} />
-      )} */}
       {showQRCode && (
-        <QRCode value={`http://localhost:3000/venue/${userParam}/join-queue`} />
+        <QRCode value={`${baseUrl}/venue/${userParam}/join-queue`} />
       )}
+
+      {/* {showQRCode && (
+        <QRCode value={`http://localhost:3000/venue/${userParam}/join-queue`} />
+      )} */}
 
       <br></br>
       <br></br>

@@ -60,7 +60,7 @@ To set up and run Queue-Smart locally, follow these steps:
 
 ## Usage
 
-To use the deployed site, please head over to: 
+To use the deployed site, please head over to: https://queue-smart.onrender.com
 
 You should see the page as below:
 

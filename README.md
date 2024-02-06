@@ -64,7 +64,7 @@ To use the deployed site, please head over to:
 
 You should see the page as below:
 
-![Application's Screenshot](client/public/.png)
+![Application's Screenshot](client/src/assets/Queue-Smart-Screenshot.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

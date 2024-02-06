@@ -1,6 +1,6 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Box, Heading, Text, Link } from "@chakra-ui/react";
+// import { Link as RouterLink } from "react-router-dom";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 // Import background image
 import backgroundImage from "../assets/home-background.jpg";

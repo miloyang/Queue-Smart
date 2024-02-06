@@ -14,6 +14,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  cache: 'bounded', // Use a bounded cache for persisted queries
+  persistedQueries: false, // Disable persisted queries 
 });
 
 // Set URL encoded data

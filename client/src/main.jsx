@@ -50,20 +50,16 @@ const router = createBrowserRouter([
         element: <JoinQueueSuccess />,
       },
       {
-        path: '/venue/:venueId',
-        element: <Queue />
+        path: "/venue/:venueId",
+        element: <Queue />,
       },
       {
-        path: '/venue/:venueId/join-queue',
-        element: <JoinQueueForm />
+        path: "/venue/:venueId/join-queue",
+        element: <JoinQueueForm />,
       },
-      // {
-      //   path: `venue/${userParam}/join-queue`,
-      //   element: <JoinQueueForm />
-      // },
       {
-        path: '/venue/:venueId/live-queue',
-        element: <LiveQueue />
+        path: "/venue/:venueId/live-queue",
+        element: <LiveQueue />,
       },
     ],
   },

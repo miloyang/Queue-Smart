@@ -12,7 +12,12 @@ const Footer = () => {
     >
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (
-          <Button className="btn btn-dark mb-3" variant="outline" colorScheme="white" onClick={() => navigate(-1)}>
+          <Button
+            className="btn btn-dark mb-3"
+            variant="outline"
+            colorScheme="white"
+            onClick={() => navigate(-1)}
+          >
             &larr; Go Back
           </Button>
         )}

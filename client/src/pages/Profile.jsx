@@ -21,15 +21,10 @@ const Profile = () => {
     refetchQueries: [{ query: QUERY_ME }], // Refetch user data after deletion
   });
 
-  // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-  //   variables: { username: userParam },
-  // });
-
-  // const { loading, data } = useQuery(QUERY_ME);
-  console.log(data);
+  // console.log(data);
 
   const user = data?.me || data?.user || {};
-  console.log(user);
+  // console.log(user);
 
   const handleRemoveVenue = async () => {
     try {
@@ -75,7 +70,11 @@ const Profile = () => {
               </Text>
             </Link>
 
-            <Button style={{ marginTop: "1.5rem" }} onClick={handleRemoveVenue} colorScheme="red">
+            <Button
+              style={{ marginTop: "1.5rem" }}
+              onClick={handleRemoveVenue}
+              colorScheme="red"
+            >
               Remove Venue
             </Button>
           </div>

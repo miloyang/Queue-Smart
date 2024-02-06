@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, Button, Spinner } from "@chakra-ui/react";
+import { Box, Heading, Text, Button } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
@@ -26,7 +26,7 @@ const LiveQueue = () => {
       const { data } = await removeQueue({
         variables: {
           venueId: JSON.parse(localStorage.getItem("venueId")),
-          queueId
+          queueId,
         },
       });
     } catch (e) {

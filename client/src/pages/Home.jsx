@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link as RouterLink } from "react-router-dom";
 import { Box, Heading, Text } from "@chakra-ui/react";
 
 // Import background image
@@ -27,10 +26,6 @@ const Home = () => {
         <Text fontSize="lg" mb={4}>
           Get started by signing up or logging in.
         </Text>
-        {/* <Box>
-          <Link as={RouterLink} to="/signup" color="teal.500" mr={4}>Sign Up</Link>
-          <Link as={RouterLink} to="/login" color="teal.500">Log In</Link>
-        </Box> */}
       </Box>
     </Box>
   );

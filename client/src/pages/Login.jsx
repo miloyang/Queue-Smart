@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
 // import signup  from './Signup';
 import {
   Box,
@@ -12,12 +12,12 @@ import {
   Text,
   Flex,
   Link as ChakraLink,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -46,8 +46,8 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
@@ -57,9 +57,9 @@ const Login = (props) => {
       mt={4}
       mb={4}
       alignItems="center"
-    //   minH="100vh"
-    //   width="100%"
-    //   bg="gray.100"
+      //   minH="100vh"
+      //   width="100%"
+      //   bg="gray.100"
     >
       <Box
         borderWidth="1px"
@@ -75,7 +75,7 @@ const Login = (props) => {
         </Text>
         {data ? (
           <Text mb={4}>
-            Success! You may now head{' '}
+            Success! You may now head{" "}
             <ChakraLink to="/" color="teal.500">
               back to the homepage.
             </ChakraLink>
@@ -104,12 +104,7 @@ const Login = (props) => {
                 onChange={handleChange}
               />
             </FormControl>
-            <Button
-              colorScheme="teal"
-              type="submit"
-              width="full"
-              mb={4}
-            >
+            <Button colorScheme="teal" type="submit" width="full" mb={4}>
               Login
             </Button>
           </form>
@@ -122,7 +117,7 @@ const Login = (props) => {
         )}
 
         <Text mb={4}>
-          Don&apos;t have an account?{' '}
+          Don&apos;t have an account?{" "}
           <ChakraLink as={Link} to="/signup" color="teal.500">
             Sign up here
           </ChakraLink>

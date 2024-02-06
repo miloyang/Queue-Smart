@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
-import { useMutation } from '@apollo/client';
-import { ADD_QUEUE } from '../../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_QUEUE } from "../../utils/mutations";
 
 const JoinQueueForm = () => {
   const navigate = useNavigate();
-  // const { venueId: userParam } = useParams(); 
+  // const { venueId: userParam } = useParams();
   const [addQueueMutation] = useMutation(ADD_QUEUE);
 
   const [customerName, setCustomerName] = useState("");
@@ -19,16 +19,16 @@ const JoinQueueForm = () => {
     try {
       const { data } = await addQueueMutation({
         variables: {
-          venueId: JSON.parse(localStorage.getItem('venueId')), 
+          venueId: JSON.parse(localStorage.getItem("venueId")),
           customerName,
           customerMobile,
-          partySize
-        }
+          partySize,
+        },
       });
-      console.log('New queue entry added:', data.addQueue);
+      console.log("New queue entry added:", data.addQueue);
       navigate("/join-queue-success"); // Navigate after successful submission
     } catch (error) {
-      console.error('Error adding queue entry:', error);
+      console.error("Error adding queue entry:", error);
     }
   };
 

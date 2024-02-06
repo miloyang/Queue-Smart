@@ -42,11 +42,13 @@ const startApolloServer = async (typeDefs, resolvers) => {
   db.once("open", () => {
     // Start the server on successful connection
     app.listen(PORT, () => {
-    console.log(`🌍 Now listening on localhost:${PORT}`);
-    // log where to go to test GQL API
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+      console.log(`🌍 Now listening on localhost:${PORT}`);
+      // log where to go to test GQL API
+      console.log(
+        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
+      );
+    });
   });
-});
 };
 
 // Call the async function to start the server

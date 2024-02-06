@@ -29,7 +29,6 @@ const Queue = () => {
       {showQRCode && (
         <QRCode value={`http://localhost:3000/venue/${userParam}/join-queue`} />
       )}
-      {/* {showQRCode && <QRCode value={`venue/${userParam}/join-queue`} />} */}
 
       <br></br>
       <br></br>

@@ -1,7 +1,7 @@
 //! Import dependencies
 const { User, Venue } = require("../models");
 const { signToken } = require("../utils/auth");
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 // const twilio = require('twilio');
 
 // const client = twilio('', '');
@@ -59,13 +59,17 @@ const resolvers = {
     addVenue: async (parent, { venueName }, context) => {
       // Check if the user is authenticated
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in to add a venue');
+        throw new AuthenticationError(
+          "You need to be logged in to add a venue"
+        );
       }
 
       // Check if the user already has a venue associated with their account
-      const user = await User.findById(context.user._id).populate('venue');
+      const user = await User.findById(context.user._id).populate("venue");
       if (user.venue) {
-        throw new Error('You already have a venue associated with your account');
+        throw new Error(
+          "You already have a venue associated with your account"
+        );
       }
 
       // Create the new venue
@@ -149,18 +153,14 @@ const resolvers = {
       throw AuthenticationError;
     },
     // remove a queue
-    removeQueue: async (
-      parent,
-      { venueId, queueId },
-      context
-    ) => {
+    removeQueue: async (parent, { venueId, queueId }, context) => {
       if (context.user) {
         return Venue.findOneAndUpdate(
           { _id: venueId },
           {
             $pull: {
               queues: {
-                _id: queueId
+                _id: queueId,
               },
             },
           },

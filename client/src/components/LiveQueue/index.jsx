@@ -3,12 +3,12 @@ import { Box, Heading, Text, Button, Spinner } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { REMOVE_QUEUE } from '../../utils/mutations';
+import { REMOVE_QUEUE } from "../../utils/mutations";
 
 const LiveQueue = () => {
-  const [queuedEntries, setQueuedEntries] = useState([]);
+  // const [queuedEntries, setQueuedEntries] = useState([]);
   const { loading, data, refetch } = useQuery(QUERY_ME);
-  const user = data?.me.venue.queues || data?.user || {};
+  const user = data?.me.venue.queues || data?.user || [];
   console.log(user);
 
   const [removeQueue, { error }] = useMutation(REMOVE_QUEUE);
@@ -21,18 +21,17 @@ const LiveQueue = () => {
 
   // Function to remove the customer from the queue
   const removeCustomerFromQueue = async (index) => {
-let queueId = index;
+    let queueId = index;
     try {
       const { data } = await removeQueue({
-        variables: { venueId:JSON.parse(localStorage.getItem('venueId')), queueId }
+        variables: {
+          venueId: JSON.parse(localStorage.getItem("venueId")),
+          queueId
+        },
       });
-
     } catch (e) {
       console.error(e);
     }
-    // const updatedQueue = [...queuedEntries];
-    // updatedQueue.splice(index, 1);
-    // setQueuedEntries(updatedQueue);
   };
 
   return (

@@ -43,6 +43,22 @@ export const ADD_VENUE = gql`
   }
 `;
 
+export const REMOVE_VENUE = gql`
+mutation RemoveVenue($venueId: ID!) {
+  removeVenue(venueId: $venueId) {
+    _id
+    queues {
+      _id
+      createdAt
+      customerMobile
+      customerName
+      partySize
+    }
+    venueName
+  }
+}
+`;
+
 export const ADD_QUEUE = gql`
   #! Mutation to add queues into the venue
   mutation AddQueue(

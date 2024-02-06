@@ -40,20 +40,22 @@ const Queue = () => {
       )}
 
       <br></br>
+      <br></br>
       {/* Make shift button to test out join queue form */}
       {Auth.loggedIn() && (
         <Link to="/venue/${userParam}/join-queue">
-          <Button colorScheme="teal">Join Queue</Button>
+          <Button colorScheme="yellow">Join Queue</Button>
         </Link>
       )}
 
       {/* <Link to={`/venue/${user.venue._id}`}></Link> */}
+
       {/* Make shift button to test out join queue success page */}
-      {Auth.loggedIn() && (
+      {/* {Auth.loggedIn() && (
         <Link to="/join-queue-success">
           <Button colorScheme="teal">Join Queue Success</Button>
         </Link>
-      )}
+      )} */}
     </div>
   );
 };

@@ -6,12 +6,12 @@ import { ADD_QUEUE } from '../../utils/mutations';
 
 const JoinQueueForm = () => {
   const navigate = useNavigate();
-  const { venueId: userParam } = useParams(); // Get venueId from URL params
+  // const { venueId: userParam } = useParams(); 
   const [addQueueMutation] = useMutation(ADD_QUEUE);
 
   const [customerName, setCustomerName] = useState("");
   const [customerMobile, setCustomerMobile] = useState("");
-  const [partySize, setPartySize] = useState(1);
+  const [partySize, setPartySize] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const JoinQueueForm = () => {
     try {
       const { data } = await addQueueMutation({
         variables: {
-          venueId: JSON.parse(localStorage.getItem('venueId')), // Pass the venueId from URL params
+          venueId: JSON.parse(localStorage.getItem('venueId')), 
           customerName,
           customerMobile,
           partySize

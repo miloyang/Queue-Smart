@@ -5,7 +5,7 @@ import { Box, Flex, Link as ChakraLink, Button, Text } from "@chakra-ui/react";
 
 const Header = () => {
   const navigate = useNavigate();
-  
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -39,7 +39,16 @@ const Header = () => {
         <div align="center">
           {Auth.loggedIn() ? (
             <Box mb={4}>
-              <ChakraLink as={Link} to="/me" mr={4}>
+              <ChakraLink
+                as={Link}
+                to="/me"
+                mr={4}
+                color="teal"
+                fontSize="lg"
+                _hover={{ textDecoration: "underline" }}
+                _focus={{ outline: "none", boxShadow: "outline" }}
+                _active={{ color: "teal.500" }}
+              >
                 {Auth.getProfile().data.username}'s profile
               </ChakraLink>
               <Button onClick={logout} variant="outline" colorScheme="white">

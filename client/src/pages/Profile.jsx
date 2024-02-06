@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-import { useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_ME } from "../utils/queries";
+import { REMOVE_VENUE } from "../utils/mutations";
 
 import { Button, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-// import { Venue } from "../../../server/models";
 
 const Profile = () => {
   const { loading, data, refetch } = useQuery(QUERY_ME);
@@ -17,6 +17,10 @@ const Profile = () => {
     refetch(); // Refetch user data when component mounts or userParam changes
   }, [userParam, refetch]);
 
+  const [removeVenue] = useMutation(REMOVE_VENUE, {
+    refetchQueries: [{ query: QUERY_ME }], // Refetch user data after deletion
+  });
+
   // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
   //   variables: { username: userParam },
   // });
@@ -26,6 +30,15 @@ const Profile = () => {
 
   const user = data?.me || data?.user || {};
   console.log(user);
+
+  const handleRemoveVenue = async () => {
+    try {
+      await removeVenue();
+      // Optionally, perform any UI updates after successful deletion
+    } catch (error) {
+      console.error("Error removing venue:", error);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,16 +59,6 @@ const Profile = () => {
           )}
         </div>
 
-        {/* Display the added venue as a clickable link if the user has added one */}
-        {/* {user.venue && (
-          <div>
-            <h2>Venue:</h2>
-            <Link to={`/venue/${user.venue._id}`}>
-              <p>{user.venue.venueName}</p>
-            </Link>
-          </div>
-        )} */}
-
         {user.venue && (
           <div style={{ marginTop: "1rem" }}>
             <Text fontSize="3xl" fontWeight="bold">
@@ -71,31 +74,14 @@ const Profile = () => {
                 {user.venue.venueName}
               </Text>
             </Link>
+
+            <Button style={{ marginTop: "1.5rem" }} onClick={handleRemoveVenue} colorScheme="red">
+              Remove Venue
+            </Button>
           </div>
         )}
       </div>
     </div>
-
-    // <div>
-    //   <div className="flex-row justify-center mb-3">
-    //   </div>
-    //   <div>
-    //     <div className="flex-row justify-center mb-3">
-    //       {/* Other profile page content */}
-    //       <Link to="/add-venue">
-    //         <Button size="lg" colorScheme="teal">Add Venue</Button>
-    //       </Link>
-    //     </div>
-    //     {console.log(user.venue)}
-    //     {/* Display the venue if the user has added one */}
-    //     {user.venue && (
-    //       <div>
-    //         <h2>Venue:</h2>
-    //         <p>{user.venue.venueName}</p>
-    //       </div>
-    //     )}
-    //   </div>
-    // </div>
   );
 };
 

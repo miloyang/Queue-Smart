@@ -23,7 +23,7 @@ const venueSchema = new Schema({
             partySize: {
                 type: Number,
                 required: true,
-                default: 1,
+                // default: 1,
             },
             createdAt: {
                 type: Date,
